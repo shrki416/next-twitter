@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export default function favorites({ tweets}) {
+export default function favorites({ tweets }) {
+  console.log(tweets);
+
   return (
     <div>
       <h1>Hello from favorites page</h1>
