@@ -5,5 +5,5 @@ import Navigation from "../components/Navigation";
 import axios from "axios";
 
 export default function Home() {
-  return <Navigation />;
+  return <h1>Home Page</h1>;
 }
