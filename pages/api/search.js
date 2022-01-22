@@ -29,5 +29,23 @@ export default async function handler(req, res) {
     return tweet;
   });
 
+  const mergeArrayObjects = (arr1, arr2) => {
+    return arr1.map((item, index) => {
+      if (item.attachments) {
+        const media = arr2.find((media) => media.media_key === item.attachments.media_keys[0]);
+        item.attachments.media_keys = media.media_key;
+        item.attachments.preview_image_url = media.preview_image_url;
+        item.attachments.alt_text = media.alt_text;
+        item.attachments.type = media.type;
+        item.attachments.url = media.url;
+        item.attachments.width = media.width;
+        item.attachments.height = media.height;
+      }
+    });
+    return item;
+  };
+
+  mergeArrayObjects(tweets, media);
+
   res.send(tweets);
 }
