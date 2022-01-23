@@ -23,17 +23,17 @@ function Navigation() {
 
         <div className="hidden md:inline-flex items-center space-x-5">
           <Link href="/">
-            <a className="font-normal text-gray-600 dark:text-gray-400 hidden md:inline-block p1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all">
+            <a className="font-normal text-2xl hidden md:inline-block p1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-200 transition-all">
               Home
             </a>
           </Link>
           <Link href="/search">
-            <a className="font-normal text-gray-600 dark:text-gray-400 hidden md:inline-block p1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all">
+            <a className="font-normal text-2xl hidden md:inline-block p1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-200 transition-all">
               Search
             </a>
           </Link>
           <Link href="/favorites">
-            <a className="font-normal text-gray-600 dark:text-gray-400 hidden md:inline-block p1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all">
+            <a className="font-normal text-2xl hidden md:inline-block p1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-200 transition-all">
               Favorites
             </a>
           </Link>
