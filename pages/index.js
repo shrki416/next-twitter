@@ -1,9 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Navigation from "../components/Navigation";
-import axios from "axios";
 
 export default function Home() {
-  return <h1>Home Page</h1>;
+  return (
+    <div className="container mx-auto max-w-2xl">
+      hello from home page
+    </div>
+  );
 }
