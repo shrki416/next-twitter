@@ -1,5 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import axios from "axios";
 const USER_END_POINT = `https://api.twitter.com/2/users/by/username/`;
 const TWEETS_END_POINT = `https://api.twitter.com/2/users/`;
@@ -18,34 +16,22 @@ export default async function handler(req, res) {
     `${TWEETS_END_POINT}${id}/tweets${EXPANSIONS}`,
     { headers }
   );
-  const tweets = tweetsRes.data.data;
-  const { users, media } = tweetsRes.data.includes;
+  const tweets = tweetsRes.data;
 
-  tweets.map((tweet) => {
-    const user = users.find((user) => user.id === tweet.author_id);
-    tweet.username = user.username;
-    tweet.profile_image_url = user.profile_image_url;
+  function getAuthorInfo(author_id) {
+    return tweets.includes.users.find((user) => user.id === author_id);
+  }
 
-    return tweet;
+  const data = tweets.data.map((tweet) => {
+    return {
+      ...tweet,
+      media:
+        tweet?.attachments?.media_keys.map((key) =>
+          tweets.includes.media.find((media) => media.media_key === key)
+        ) || [],
+      author: getAuthorInfo(tweet.author_id),
+    };
   });
 
-  const mergeArrayObjects = (arr1, arr2) => {
-    return arr1.map((item, index) => {
-      if (item.attachments) {
-        const media = arr2.find((media) => media.media_key === item.attachments.media_keys[0]);
-        item.attachments.media_keys = media.media_key;
-        item.attachments.preview_image_url = media.preview_image_url;
-        item.attachments.alt_text = media.alt_text;
-        item.attachments.type = media.type;
-        item.attachments.url = media.url;
-        item.attachments.width = media.width;
-        item.attachments.height = media.height;
-      }
-    });
-    return item;
-  };
-
-  mergeArrayObjects(tweets, media);
-
-  res.send(tweets);
+  res.send(data);
 }
