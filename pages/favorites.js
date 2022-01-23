@@ -1,35 +1,58 @@
-import axios from 'axios';
-
-export default function favorites({ tweets }) {
-  console.log(tweets);
-
-  return (
-    <div>
-      <h1>Hello from favorites page</h1>
-    </div>
-  )
-}
+import Image from "next/image";
+import Link from "next/link";
+import axios from "axios";
 
 export async function getStaticProps() {
-  const URL = `https://api.twitter.com/2/users/44196397/tweets?expansions=author_id&tweet.fields=created_at,author_id,public_metrics&user.fields=username`;
+  const users = ["tasty", "epicurious", "food52", "seriouseats", "bonappetit"];
+
+  const BASE_URL = `https://api.twitter.com/2/users/by/username/`;
+  const EXPANSIONS = `user.fields=profile_image_url,verified`;
 
   const headers = {
     Authorization: `Bearer ${process.env.TOKEN}`,
   };
 
-  const response = await axios.get(URL, { headers });
-  const tweets = response.data.data;
-  const { users } = response.data.includes;
-
-  tweets.map((tweet) => {
-    const user = users.find((user) => user.id === tweet.author_id);
-    tweet.username = user.username;
-    return tweet;
+  const data = users.map(async (user) => {
+    const response = await axios.get(`${BASE_URL}${user}?${EXPANSIONS}`, {
+      headers,
+    });
+    return response.data.data;
   });
 
   return {
     props: {
-      tweets,
+      data: await Promise.all(data),
     },
   };
+}
+
+export default function favorites({ data }) {
+  async function getTweets(e) {
+    const { data } = await axios.get(`/api/favorites?id=${e.target.id}`);
+    console.log(data);
+  }
+
+  return (
+    <div className="container mx-auto max-w-2xl">
+      <div className="flex justify-around mt-2">
+        {data.map((user) => {
+          return (
+            <button key={user.id} className="pt-4" onClick={getTweets}>
+              <Image
+                className="rounded-full"
+                src={user.profile_image_url}
+                width={50}
+                height={50}
+                alt={user.username}
+                id={user.id}
+              />
+            </button>
+          );
+        })}
+      </div>
+        <h1 className="font-bold text-3xl md:text-5xl tracking-tight m-4">
+          Tweets
+        </h1>
+    </div>
+  );
 }
