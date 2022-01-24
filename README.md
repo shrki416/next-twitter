@@ -1,3 +1,5 @@
+###### README WIP
+
 This is the [Live Demo](https://next-twitter-sigma.vercel.app/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## run the development server:
@@ -8,9 +10,7 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) To check it out.
-
-###### README WIP
+Open `http://localhost:3000` To check it out.
 
 ### Author
 
