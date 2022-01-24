@@ -1,6 +1,7 @@
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Tweet from "../components/tweet";
+import Tweet from "../components/Tweet";
 import axios from "axios";
 import { useState } from "react";
 
@@ -44,6 +45,11 @@ export default function Favorites({ data }) {
 
   return (
     <div className="container mx-auto max-w-2xl">
+      <Head>
+        <title>Favorites Page</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="flex justify-around mt-2">
         {data.map((user) => {
           return (
