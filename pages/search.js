@@ -47,7 +47,7 @@ export default function Search() {
         Tweets
       </h1>
       {tweets.map((tweet) => (
-        <Tweet key={tweet.id} {...tweet} />
+        console.log(tweet.id) || <Tweet key={tweet.id} {...tweet} />
       ))}
     </div>
   );
