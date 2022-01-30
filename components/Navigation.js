@@ -17,19 +17,13 @@ function Navigation() {
       <div className="flex items-center justify-between p-4 md:p-8">
         <div className="md:inline-flex items-center space-x-5">
           <Link href="/">
-            <a className="font-normal md:text-2xl md:inline-block p1 sm:px-3 sm:py-2 rounded-lg transition-all">
-              Home
-            </a>
+            <a className="nav-item">Home</a>
           </Link>
           <Link href="/search">
-            <a className="font-normal md:text-2xl md:inline-block p1 sm:px-3 sm:py-2 rounded-lg transition-all">
-              Search
-            </a>
+            <a className="nav-item">Search</a>
           </Link>
           <Link href="/favorites">
-            <a className="font-normal md:text-2xl md:inline-block p1 sm:px-3 sm:py-2 rounded-lg transition-all">
-              Favorites
-            </a>
+            <a className="nav-item">Favorites</a>
           </Link>
         </div>
 
