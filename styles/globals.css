@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Bangers";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("./fonts/bangers-regular.woff") format("woff2"),
+    url("./fonts/bangers-regular.woff2") format("woff");
+}
+
+.nav-item {
+  @apply font-bangers font-normal md:text-2xl md:inline-block sm:px-3 sm:py-2 rounded-lg transition-all;
+}
