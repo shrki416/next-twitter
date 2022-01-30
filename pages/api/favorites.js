@@ -1,17 +1,25 @@
 import axios from "axios";
 
-const TWEETS_END_POINT = `https://api.twitter.com/2/users/`;
-const EXPANSIONS = `?expansions=author_id,attachments.media_keys&tweet.fields=created_at,author_id,public_metrics&user.fields=profile_image_url,verified&media.fields=height,media_key,preview_image_url,type,url,width,alt_text`;
+const TWEETS_END_POINT = `https://api.twitter.com/2/users`;
+
+const params = {
+  expansions: "author_id,attachments.media_keys",
+  "tweet.fields": "created_at,author_id,public_metrics",
+  "user.fields": "profile_image_url,verified",
+  "media.fields": "height,media_key,preview_image_url,type,url,width,alt_text",
+};
+
+let expansions = new URLSearchParams(params);
 
 const headers = {
   Authorization: `Bearer ${process.env.TOKEN}`,
 };
 
 export default async function handler(req, res) {
-  const tweetsRes = await axios.get(
-    `${TWEETS_END_POINT}${req.query.id}/tweets${EXPANSIONS}`,
-    { headers }
-  );
+  const { id } = req.query;
+  const URL = `${TWEETS_END_POINT}/${id}/tweets?${expansions.toString()}`;
+  const tweetsRes = await axios.get(URL, { headers });
+
   const tweets = tweetsRes.data;
 
   function getAuthorInfo(author_id) {
