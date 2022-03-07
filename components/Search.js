@@ -19,7 +19,7 @@ export default function Search() {
   return (
     <div className="container mx-auto max-w-2xl">
       <Head>
-        <title>AA | Search Page</title>
+        <title>Search Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
